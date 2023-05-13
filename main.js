@@ -1,15 +1,30 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron');
+const path = require('path');
+const axios = require('axios');
+
+//Main Window
+const isDev = true;
 
 const createWindow = () => {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600
+    width: isDev ? 1200 : 500,
+    height: 700,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+    },
   })
 
-  win.loadFile('./renderer/index.html')
+  if (isDev){
+    win.webContents.openDevTools();
+  }
+
+  win.loadFile(path.join(__dirname, './renderer/index.html'));
 }
 
 app.whenReady().then(() => {
+  //Initialize Functions
+  ipcMain.handle('axios.openAI', openAI);
+
   createWindow()
 
   app.on('activate', () => {
@@ -24,3 +39,33 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
+
+//Main Functions
+async function openAI(event, sentence){
+  let res = null;
+  // Send a POST request
+await axios({
+  method: 'post',
+  url: 'https://api.openai.com/v1/completions',
+  data: {
+    "model": "text-davinci-003",
+    "prompt": "Write a recipe based on these ingredients and instructions:\n\nIngredients:\n\nInstructions:" + sentence,
+    "temperature": 0.3,
+    "max_tokens": 120,
+    "top_p": 1.0,
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0
+},
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer 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'
+  } 
+}).then(function (response) {
+  res = response.data;
+})
+.catch(function (error) {
+  res = error;
+});
+
+  return res;
+}

@@ -2,7 +2,6 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
@@ -11,10 +10,25 @@
       http-equiv="X-Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
     />
-    <title>Hello from Electron renderer!</title>
+    <title>Recipe Creator App</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <p>👋</p>
+    <h1>Recipe Creator</h1>
+    <div>
+      <form id="form_sentence">
+        <label for="sentence">Food to cook:</label><br>
+        <textarea name="sentence" rows="4"></textarea><br>
+        <input type="submit" value="Submit"><br>
+      </form>
+      <br>
+      <div>
+        <label for="ingredients">Ingredients and Recipe:</label><br>
+        <textarea id="ingredients" rows="4" readonly></textarea><br>
+      </div>
+      <br>
+
+    </div>
+
   </body>
+  <script src="./js/renderer.js"></script>
 </html>
