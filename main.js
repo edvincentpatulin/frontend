@@ -56,13 +56,13 @@ await axios({
   url: 'https://api.openai.com/v1/completions',
   data: {
     "model": "text-davinci-003",
-    "prompt": "Write a recipe based on these ingredients and instructions:\n\nIngredients:\n\nInstructions:" + sentence,
-    "temperature": 0.3,
-    "max_tokens": 120,
-    "top_p": 1.0,
-    "frequency_penalty": 0.0,
-    "presence_penalty": 0.0
-},
+    "prompt": "Write ingredients and recipe of Adobo\n\n" + sentence,
+    "temperature": 0.7,
+    "max_tokens": 256,
+    "top_p": 1,
+    "frequency_penalty": 0,
+    "presence_penalty": 0
+  },
   headers: {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + env.APIKEY_OPENAI

@@ -11,24 +11,25 @@
       content="default-src 'self'; script-src 'self'"
     />
     <title>Recipe Creator App</title>
+    <link href="./css/bootstrap/bootstrap.min.css" rel="stylesheet">
   </head>
-  <body>
-    <h1>Recipe Creator</h1>
+  <body class="bg-dark">
+    <div class="container bg-success bg-opacity-25 p-5 mt-3">
+    <p class="h1 fw-bold text-center text-white">Recipe Creator</p>
     <div>
       <form id="form_sentence">
-        <label for="sentence">Food to cook:</label><br>
-        <textarea name="sentence" rows="4"></textarea><br>
-        <input type="submit" value="Submit"><br>
+        <label class="form-label fw-semibold text-white" for="sentence">Enter Food:</label>
+        <textarea class="form-control mb-3" name="sentence" rows="4"></textarea>
+        <input class="btn btn-light mt-3 d-grid gap-2 col-3 mx-auto rounded-pill" type="submit" value="Submit">
       </form>
-      <br>
-      <div>
-        <label for="ingredients">Ingredients and Recipe:</label><br>
-        <textarea id="ingredients" rows="4" readonly></textarea><br>
+      <div class="mt-3">
+        <label class="form-label fw-semibold text-white" for="ingredients">Ingredients and Recipe:</label>
+        <textarea class="form-control" id="ingredients" rows="4" readonly></textarea>
       </div>
-      <br>
 
     </div>
 
+    <script src="./js/bootstrap/bootstrap.bundle.min.js"></script>
   </body>
   <script src="./js/renderer.js"></script>
 </html>
