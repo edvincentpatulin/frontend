@@ -56,7 +56,7 @@ await axios({
   url: 'https://api.openai.com/v1/completions',
   data: {
     "model": "text-davinci-003",
-    "prompt": "Write ingredients and recipe of Adobo\n\n" + sentence,
+    "prompt": "Write Ingredients and Recipe of Adobo\n\n" + sentence,
     "temperature": 0.7,
     "max_tokens": 256,
     "top_p": 1,

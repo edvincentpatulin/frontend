@@ -6,14 +6,14 @@ if(form) {
         const formData = new FormData(form);
         
         let sentence = formData.get("sentence");
-        if (sentence.length <= 8) {
+        if (sentence.length <= 4) {
             alertMessage("error", "Please Input at least 8 character!");
 
             return;
         }
 
         const response = await window.axios.openAI(formData.get("sentence"));
-        document.getElementById("ingredients").innerHTML = JSON.stringify(response.choices[0].text).replace(/\\n/g, '');
+        document.getElementById("ingredients").innerHTML = response.choices[0].text.replace(/\\n/g, '');
     };
 } 
 
